@@ -65,6 +65,14 @@ remote machine. You can also define owner and mode of the target ::
     >>> conn.scp(('test.txt', ), target='/tmp', mode='0666', owner='nobody:')
     >>> print conn.run('cat /tmp/test.txt').stdout
     Hello world
+    >>> conn = SSHConnection('localhost', login='root')
+    >>> conn.put('test.txt', target='/tmp/', mode='0666', owner='nobody:')
+    >>> print conn.run('cat /tmp/test.txt').stdout
+    Hello world
+    >>> conn = SSHConnection('localhost', login='root')
+    >>> conn.get('/tmp/test.txt', target='/tmp/')
+    >>> cat /tmp/test.txt
+    Hello world
     >>> print conn.run('ls -l  /tmp/test.txt').stdout
     -rw-rw-rw- 1 nobody nogroup ... /tmp/test.txt
 
